@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>mediaMonitor</title>
+  <style>
+    table div.td{
+      background:gray;
+      height:20px;
+      width:20px;
+      -webkit-transition:.5s;
+      transition:.5s;
+    }
+    table td.viewed div.td {
+      background:#27b454;
+    }
+  </style>
+</head>
+<body>
+  <h1>mediaMonitor</h1>
+  <script src="mediaRecorder.js"></script>
+  <audio src="http://www.freesfx.co.uk/rx2/mp3s/7/7884_1348076801.mp3" controls></audio>
+  <div class="progress">
+    <h4>Progress</h4>
+  </div>
+  <script>
+    var scale = 20;
+
+    (function( container, scale ){
+      var table   = document.createElement( "table" ),
+      thead       = document.createElement( "thead" ),
+      theadRow    = document.createElement( "tr" ),
+      tbody       = document.createElement( "tbody" ),
+      progressRow = document.createElement( "tr" );
+
+      for ( var i = 0; i<scale ;i++ ) {
+        var th = document.createElement("th");
+        th.innerHTML = i + 1;
+        theadRow.appendChild( th );
+        var td = document.createElement("td");
+        td.innerHTML = "<div class='td'></div>";
+        progressRow.appendChild( td );
+      }
+
+      thead.appendChild( theadRow );
+      tbody.appendChild( progressRow );
+      table.appendChild( thead );
+      table.appendChild( tbody );
+      container.appendChild( table );
+
+    })( document.querySelector("div.progress"), scale );
+
+    var recordListener = function( data ){
+
+      for ( var i = data.startScale; i < data.endScale ; i++ ) {
+
+        document.querySelectorAll( "td" )[i].className = "viewed";
+      }
+    };
+
+    var audio = document.querySelector("audio");
+
+    var opts = {
+      listenCB:recordListener,
+      scale:scale
+    };
+
+    var monitor = mediaMonitor.detect( audio, opts );
+
+  </script>
+</body>
+</html>
+

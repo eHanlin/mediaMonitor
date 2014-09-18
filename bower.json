@@ -1,0 +1,17 @@
+{
+  "name": "media-monitor",
+  "version": "0.0.1",
+  "authors": [
+    "sparrow.jang <sparrow.jang@gmail.com>"
+  ],
+  "description": "monitor player duration",
+  "dependencies": {
+  },
+  "keywords": [
+    "media",
+    "monitor",
+    "video",
+    "audio"
+  ],
+  "license": "MIT"
+}
