@@ -39,7 +39,7 @@ mediaMonitor.detect( audio, opts );
 
 ## API
 
-#### mediaMonitor.detect( element, opts ) : MediaRecorder
+#### mediaMonitor.detect( element, opts ) : MediaMonitor
 > Create and listen a recorder
 
 #### MediaMonitor.destroy() : void
