@@ -1,6 +1,6 @@
 {
   "name": "media-monitor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/mediaMonitor.js",
   "devDependencies": {
     "gulp": "^3.6.0",
