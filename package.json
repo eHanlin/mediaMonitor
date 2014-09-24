@@ -1,7 +1,8 @@
 {
   "name": "media-monitor",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/mediaMonitor.js",
+  "description": "monitor player duration",
   "devDependencies": {
     "gulp": "^3.6.0",
     "gulp-bower": "0.0.6",

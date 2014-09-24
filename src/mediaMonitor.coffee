@@ -162,5 +162,6 @@ mediaMonitor = (()->
 
 )()
 
-window.mediaMonitor = mediaMonitor
+if module then module.exports = mediaMonitor
+if window then window.mediaMonitor = mediaMonitor
 
