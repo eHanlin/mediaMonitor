@@ -162,6 +162,6 @@ mediaMonitor = (()->
 
 )()
 
-if module then module.exports = mediaMonitor
-if window then window.mediaMonitor = mediaMonitor
+if typeof module != "undefined" then module.exports = mediaMonitor
+if typeof window != "undefined" then window.mediaMonitor = mediaMonitor
 
