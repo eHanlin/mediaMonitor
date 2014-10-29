@@ -103,7 +103,8 @@ class MediaMonitor
 
   #@event
   onTimeupdate:( e )->
-
+    #fixed a bug when loadedmetadata is not support
+    @setDuration_ @el.duration
     if @isEnablePlaying and !@el.paused then @onScaleChange()
 
 #data builder
