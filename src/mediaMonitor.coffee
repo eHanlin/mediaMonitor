@@ -9,6 +9,9 @@ class MediaMonitor
     @addEvent_ @el, "seeked", @
     @addEvent_ @el, "timeupdate", @
 
+    @isEnabledSeeking_ = "onseeking" of @el or "onseeked" of @el or
+                         (/(ipad|iphone)/i.test(navigator.userAgent) && /Version\/8/i.test(navigator.userAgent))
+
     if @el.duration
       @setDuration_ @el.duration
 
@@ -90,15 +93,21 @@ class MediaMonitor
 
   onScaleChange:->
 
-    lastStatus = @getLastStatus_()
-    startScale = if lastStatus then lastStatus.endScale else parseInt( @startTime_ * @scale / @duration_ )
+    if @isEnabledSeeking_
+      lastStatus = @getLastStatus_()
+      startScale = if lastStatus then lastStatus.endScale else parseInt( @startTime_ * @scale / @duration_ )
 
-    end = @el.currentTime
-    endScale   = parseInt( end * @scale / @duration_ )
-    
-    if @listenCB and ( !lastStatus or endScale != lastStatus.endScale ) then @listenCB startScale:startScale, endScale:endScale
+      end = @el.currentTime
+      endScale   = parseInt( end * @scale / @duration_ )
+      
+      if @listenCB and ( !lastStatus or endScale != lastStatus.endScale ) then @listenCB startScale:startScale, endScale:endScale
 
-    @setLastStatus_ startScale, endScale
+      @setLastStatus_ startScale, endScale
+    #listen not support seeked
+    else
+      scale = parseInt( @el.currentTime * @scale / @duration_ )
+      if scale != @lastScale_ then @listenCB startScale:scale, endScale:scale
+      @lastScale_ = scale
 
 
   #@event
