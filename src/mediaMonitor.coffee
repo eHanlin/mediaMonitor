@@ -8,6 +8,7 @@ class MediaMonitor
     @addEvent_ @el, "seeking", @
     @addEvent_ @el, "seeked", @
     @addEvent_ @el, "timeupdate", @
+    @addEvent_ @el, "ended", @
 
     @isEnabledSeeking_ = "onseeking" of @el or "onseeked" of @el or
                          (/(ipad|iphone)/i.test(navigator.userAgent) && /Version\/8/i.test(navigator.userAgent))
@@ -58,9 +59,11 @@ class MediaMonitor
 
   #@event
   onPause:( e )->
-    if Math.round( @el.currentTime ) == Math.round( @duration_ ) then @onScaleChange()
     @isEnablePlaying = false
     @clearLastStatus_()
+
+  #@event
+  onEnded:( e )-> if Math.round( @el.currentTime ) == Math.round( @duration_ ) then @onScaleChange()
 
   #@event
   onSeeking:( e )->
