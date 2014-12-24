@@ -1,6 +1,6 @@
 {
   "name": "media-monitor",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "dist/mediaMonitor.js",
   "description": "monitor player duration",
   "devDependencies": {
