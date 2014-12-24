@@ -69,11 +69,18 @@ class MediaMonitor
   onSeeking:( e )->
     @isEnablePlaying = false
     @clearLastStatus_()
+    @seekingTime_ = @el.currentTime
 
   #@event
   onSeeked:( e )->
     @isEnablePlaying = true
-    @resetStartTime_ @el.currentTime
+    #fixed a bug that current time is zero when progress is seeked to end
+    #test device [OS]( Android 4.4.2; B1-730HD Build/KOT49H ) [Browser]( Chrome 35.0.1916.141 ) [device builder]( acer )
+    currentTime = @el.currentTime
+    seekingTime = @seekingTime_
+    resetStartTime = if seekingTime != undefined && currentTime != seekingTime then seekingTime else currentTime
+
+    @resetStartTime_ resetStartTime
 
   #@event
   onLoadedmetadata:( e )->
