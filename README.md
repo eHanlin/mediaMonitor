@@ -14,7 +14,7 @@ bower install media-monitor
 ## Install node modules
 
 ```bash
-npm install
+npm install media-monitor
 ```
 
 ## Support
