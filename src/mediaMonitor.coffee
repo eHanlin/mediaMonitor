@@ -108,7 +108,8 @@ class MediaMonitor
       startScale = if lastStatus then lastStatus.endScale else parseInt( @startTime_ * @scale / @duration_ )
 
       end = @el.currentTime
-      endScale   = parseInt( end * @scale / @duration_ )
+      #endScale   = parseInt( end * @scale / @duration_ )
+      endScale   = Math.round( end * @scale / @duration_ )
       
       if @listenCB and ( !lastStatus or endScale != lastStatus.endScale ) then @listenCB startScale:startScale, endScale:endScale
 
